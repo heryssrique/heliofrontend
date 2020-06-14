@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://rosanatarefas-backend.herokuapp.com'
+    baseURL: 'https://heliotarefasbackend.herokuapp.com'
 });
 
 export default api;
