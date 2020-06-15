@@ -81,9 +81,9 @@ function App() {
                 <TableHead>
                     <TableRow>
                         <TableCell>ID</TableCell>
-                        <TableCell>Disciplina</TableCell>
+                        <TableCell>Ttulo</TableCell>
                         <TableCell>Date</TableCell>
-                        <TableCell>Entregue?</TableCell>
+                        <TableCell>Status</TableCell>
                         <TableCell>Apagar</TableCell>
                     </TableRow>
                 </TableHead>
@@ -110,7 +110,7 @@ function App() {
                 variant="contained" 
                 color="primary" 
                 style={{marginTop: '20px'}}>
-                Adicionar
+                Novo
             </Button>
         </Container>
         <Dialog open={open} onClose={closeModal} fullWidth={true} maxWidth="sm">
