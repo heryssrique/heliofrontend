@@ -53,7 +53,7 @@ function App() {
      
      //Função para marcar o compromisso como 'Concluido'
     function markAsConcluido(id, stats) {
-        if(concluido === true){
+        if(stats === true){
             api.patch(`/agenda/${id}/pendente`).then((response) => {
                 loadData()
             });
