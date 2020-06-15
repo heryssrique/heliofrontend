@@ -43,7 +43,7 @@ function App() {
     function addAgenda() { 
         const title = titulo;
         const data = date;
-        api.post('/agenda', { title:titulo, date:data, stats:true}).then((response) => {
+        api.post('/agenda', { titulo:title, date:data, stats:true}).then((response) => {
         setTitulo('');
         setDate('');
         setOpen(false);
