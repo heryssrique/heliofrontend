@@ -21,12 +21,12 @@ function App() {
 
     const [ lista, setLista ] = useState([]);
     const [ open, setOpen ] = useState(false);
-    const [ disciplina, setDisciplina] = useState('');
+    const [ titulo, setTitulo] = useState('');
     const [ date, setDate] = useState('');
     
 
     function loadData() { 
-        api.get('/tarefa').then((response) => { 
+        api.get('/agenda').then((response) => { 
             const itens = response.data;
             setLista(itens);
         });
@@ -39,26 +39,26 @@ function App() {
     // function closeModal() { setOpen(false); }
     const closeModal = () => setOpen(false);
 
-   //Função para adicionar uma nova tarefa
-    function addTarefa() { 
-        const discipline = disciplina;
+   //Fuação para adicionar uma nova agenda
+    function addAgenda() { 
+        const titul = titulo;
         const data = date;
-        api.post('/tarefa', { disciplina: discipline, date:data, entregue: true}).then((response) => {
-        setDisciplina('');
+        api.post('/agenda', { titulo: titul, date:data, status:true}).then((response) => {
+        setTitulo('');
         setDate('');
         setOpen(false);
         loadData()
         })
      }
      
-     //Função para marcar uma Tarefa como 'Não Entregue'
-    function markAsEntregue(id, entregue) {
-        if(entregue === true){
-            api.patch(`/tarefa/${id}/naoentregue`).then((response) => {
+     //Função para marcar o compromisso como 'Concluido'
+    function markAsEntregue(id, concluido) {
+        if(concluido === true){
+            api.patch(`/agenda/${id}/pendente`).then((response) => {
                 loadData()
             });
         } else {
-                api.patch(`/tarefa/${id}/entregue`).then((response) => {
+                api.patch(`/agenda/${id}/concluido`).then((response) => {
                 loadData()
             });
         }
@@ -66,8 +66,8 @@ function App() {
 
       //Função para excluir uma Tarefa da lista.
 
-     function deleteTarefa(id) {
-         api.delete(`/tarefa/${id}`).then((response) => { 
+     function deleteAgenda(id) {
+         api.delete(`/agenda/${id}`).then((response) => { 
             loadData()
          })
      }
@@ -91,15 +91,15 @@ function App() {
                     {lista.map(item => (
                         <TableRow key={item.id}>
                             <TableCell>{item.id}</TableCell>
-                            <TableCell>{item.disciplina}</TableCell>
+                            <TableCell>{item.titulo}</TableCell>
                             <TableCell>{item.date}</TableCell>
                             <TableCell>
                                 <input type="checkbox" 
-                                onChange={() => markAsEntregue(item.id, item.entregue)}                   
-                                checked={item.entregue === true ? true : false}/>
+                                onChange={() => markAsConcluido(item.id, item.concluido)}                   
+                                checked={item.concluido === true ? true : false}/>
                             </TableCell>
                             <TableCell>
-                                <Button variant="outlined" size="small" color="secondary" onClick={() => deleteTarefa(item.id)} >Apagar</Button>
+                                <Button variant="outlined" size="small" color="secondary" onClick={() => deleteAgenda(item.id)} >Apagar</Button>
                             </TableCell>
                         </TableRow>
                     ))}
@@ -114,20 +114,20 @@ function App() {
             </Button>
         </Container>
         <Dialog open={open} onClose={closeModal} fullWidth={true} maxWidth="sm">
-            <DialogTitle id="form-dialog-title">Minhas Tarefas</DialogTitle>
+            <DialogTitle id="form-dialog-title">Meus compromissos</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    Digite as tarefas de cada disciplina.
+                    Digite o titulo do compromisso.
                 </DialogContentText>
                 <TextField
                     autoFocus
                     margin="dense"
-                    id="Disciplina"
-                    label="Tarefas"
+                    id="Titulo"
+                    label="Agenda"
                     type="text"
                     fullWidth
-                    value={disciplina}
-                    onChange={e => setDisciplina(e.target.value)}
+                    value={titulo}
+                    onChange={e => setTitulo(e.target.value)}
                 />
                 
                     <TextField
