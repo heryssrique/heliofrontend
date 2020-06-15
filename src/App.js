@@ -43,7 +43,7 @@ function App() {
     function addAgenda() { 
         const title = titulo;
         const data = date;
-        api.post('/agenda', { titulo: title, date:data, stats:true}).then((response) => {
+        api.post('/agenda', { title:titulo, date:data, stats:true}).then((response) => {
         setTitulo('');
         setDate('');
         setOpen(false);
@@ -52,7 +52,7 @@ function App() {
      }
      
      //Função para marcar o compromisso como 'Concluido'
-    function markAsConcluido(id, concluido) {
+    function markAsConcluido(id, stats) {
         if(concluido === true){
             api.patch(`/agenda/${id}/pendente`).then((response) => {
                 loadData()
@@ -95,7 +95,7 @@ function App() {
                             <TableCell>{item.date}</TableCell>
                             <TableCell>
                                 <input type="checkbox" 
-                                onChange={() => markAsConcluido(item.id, item.concluido)}                   
+                                onChange={() => markAsConcluido(item.id, item.stats)}                   
                                 checked={item.concluido === true ? true : false}/>
                             </TableCell>
                             <TableCell>
