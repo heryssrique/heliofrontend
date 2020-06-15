@@ -52,7 +52,7 @@ function App() {
      }
      
      //Função para marcar o compromisso como 'Concluido'
-    function markAsEntregue(id, concluido) {
+    function markAsConcluido(id, concluido) {
         if(concluido === true){
             api.patch(`/agenda/${id}/pendente`).then((response) => {
                 loadData()
@@ -145,7 +145,7 @@ function App() {
                 <Button onClick={closeModal} color="primary">
                     Cancelar
                 </Button>
-                <Button onClick={addTarefa} color="primary">
+                <Button onClick={addAgenda} color="primary">
                     Salvar
                 </Button>
             </DialogActions>
