@@ -41,9 +41,9 @@ function App() {
 
    //Fuação para adicionar uma nova agenda
     function addAgenda() { 
-        const titul = titulo;
+        const title = titulo;
         const data = date;
-        api.post('/agenda', { titulo: titul, date:data, status:true}).then((response) => {
+        api.post('/agenda', { titulo: title, date:data, stats:true}).then((response) => {
         setTitulo('');
         setDate('');
         setOpen(false);
