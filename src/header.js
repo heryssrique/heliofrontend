@@ -7,7 +7,7 @@ function Header() {
         <AppBar position="fixed">
             <Toolbar>
                 <Typography variant="h6">
-                    Tarefas
+                    Agenda
                 </Typography>
             </Toolbar>
         </AppBar>
