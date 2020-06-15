@@ -13,7 +13,7 @@ ReactDOM.render(
         <AppBar position="fixed">
             <Toolbar>
             <Typography variant="h6">
-                Lista de Tarefas
+                Lista de Compromissos
             </Typography>
             </Toolbar>
         </AppBar>
@@ -22,7 +22,7 @@ ReactDOM.render(
                 <App/>
             </Route>
             <Route path="/create">
-                <h1>Cadastro</h1>
+                <h1>Novo</h1>
             </Route>
         </Switch>
     </BrowserRouter>
